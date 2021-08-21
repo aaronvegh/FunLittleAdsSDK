@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwURL",
+        "repositoryURL": "https://github.com/aaronvegh/SwURL",
+        "state": {
+          "branch": "macos-support",
+          "revision": "a107485472263db9935036fa4051e56a6cb1988c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
