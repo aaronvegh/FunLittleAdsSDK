@@ -5,9 +5,9 @@
         "package": "SwURL",
         "repositoryURL": "https://github.com/cmtrounce/SwURL",
         "state": {
-          "branch": "master",
-          "revision": "7b0c74f4cd66f52d77f9482d3d2f6ed5d123080e",
-          "version": null
+          "branch": null,
+          "revision": "e035d4875ff788403e7e137117b2bf3ee35ec961",
+          "version": "0.4.1"
         }
       }
     ]
