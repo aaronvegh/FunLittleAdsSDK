@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930623DA26D17E140014DCF5 /* FunLittleAdsSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 930623D926D17E140014DCF5 /* FunLittleAdsSDK */; };
 		930A520C26699C70002DDAB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD4FE42665C055000BB08B /* ContentView.swift */; };
 		930A520D26699C71002DDAB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD4FE42665C055000BB08B /* ContentView.swift */; };
 		9382065D266188CC001D66BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9382065C266188CC001D66BE /* AppDelegate.swift */; };
@@ -73,7 +74,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		932AE88526CB465400104619 /* FunLittleAdsSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FunLittleAdsSDK; path = ../FunLittleAdsSDK; sourceTree = "<group>"; };
 		935F307B2681693E008EE3BF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		9382065A266188CC001D66BE /* Demo-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9382065C266188CC001D66BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				930623DA26D17E140014DCF5 /* FunLittleAdsSDK in Frameworks */,
 				93D020F126CB41FD008DB04B /* FunLittleAdsSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,7 +142,6 @@
 		9382064126618838001D66BE = {
 			isa = PBXGroup;
 			children = (
-				932AE88526CB465400104619 /* FunLittleAdsSDK */,
 				9382065B266188CC001D66BE /* Demo-iOS */,
 				93FD50072665C178000BB08B /* Demo-AppKit */,
 				93FD50012665C06E000BB08B /* Demo-SwiftUI */,
@@ -254,6 +254,7 @@
 			name = "Demo-iOS";
 			packageProductDependencies = (
 				93D020F026CB41FD008DB04B /* FunLittleAdsSDK */,
+				930623D926D17E140014DCF5 /* FunLittleAdsSDK */,
 			);
 			productName = "Demo-iOS";
 			productReference = 9382065A266188CC001D66BE /* Demo-iOS.app */;
@@ -355,6 +356,7 @@
 			);
 			mainGroup = 9382064126618838001D66BE;
 			packageReferences = (
+				930623D826D17E140014DCF5 /* XCRemoteSwiftPackageReference "FunLittleAdsSDK" */,
 			);
 			productRefGroup = 9382064C26618838001D66BE /* Products */;
 			projectDirPath = "";
@@ -829,7 +831,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		930623D826D17E140014DCF5 /* XCRemoteSwiftPackageReference "FunLittleAdsSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aaronvegh/FunLittleAdsSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		930623D926D17E140014DCF5 /* FunLittleAdsSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 930623D826D17E140014DCF5 /* XCRemoteSwiftPackageReference "FunLittleAdsSDK" */;
+			productName = FunLittleAdsSDK;
+		};
 		93D020F026CB41FD008DB04B /* FunLittleAdsSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FunLittleAdsSDK;

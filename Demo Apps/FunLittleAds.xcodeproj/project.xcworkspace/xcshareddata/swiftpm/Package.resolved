@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
-        "package": "SwURL",
-        "repositoryURL": "https://github.com/aaronvegh/SwURL",
+        "package": "FunLittleAdsSDK",
+        "repositoryURL": "https://github.com/aaronvegh/FunLittleAdsSDK",
         "state": {
-          "branch": "macos-support",
-          "revision": "a107485472263db9935036fa4051e56a6cb1988c",
-          "version": null
+          "branch": null,
+          "revision": "456a9fa7e4b1f7bb3a0e5c94683ba9554058bbf9",
+          "version": "0.0.3"
+        }
+      },
+      {
+        "package": "SwURL",
+        "repositoryURL": "https://github.com/cmtrounce/SwURL",
+        "state": {
+          "branch": null,
+          "revision": "e035d4875ff788403e7e137117b2bf3ee35ec961",
+          "version": "0.4.1"
         }
       }
     ]
