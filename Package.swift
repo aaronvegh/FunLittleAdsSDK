@@ -12,7 +12,7 @@ let package = Package(
             targets: ["FunLittleAdsSDK"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/aaronvegh/SwURL", .branch("macos-support"))
+        .package(url: "https://github.com/cmtrounce/SwURL", .branch("master"))
     ],
     targets: [
         .target(

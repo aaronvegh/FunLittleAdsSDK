@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "SwURL",
-        "repositoryURL": "https://github.com/aaronvegh/SwURL",
+        "repositoryURL": "https://github.com/cmtrounce/SwURL",
         "state": {
-          "branch": "macos-support",
-          "revision": "a107485472263db9935036fa4051e56a6cb1988c",
+          "branch": "master",
+          "revision": "7b0c74f4cd66f52d77f9482d3d2f6ed5d123080e",
           "version": null
         }
       }
