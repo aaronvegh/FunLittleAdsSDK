@@ -22,7 +22,9 @@ public struct AdUnitA: View {
         } else {
             HStack {
                 if let imageURL = adController.adUnitInventory.imageURL {
-                    RemoteImageView(url: imageURL, placeholderImage: Image("generic-icon"), transition: .custom(transition: .opacity, animation: .easeOut(duration: 0.5)))
+                    AsyncImage(url: imageURL) {
+                        Image("generic-icon")
+                    }
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 74, height: 74, alignment: .center)
                 }

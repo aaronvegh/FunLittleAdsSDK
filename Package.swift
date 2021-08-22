@@ -11,12 +11,9 @@ let package = Package(
             name: "FunLittleAdsSDK",
             targets: ["FunLittleAdsSDK"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/cmtrounce/SwURL", "0.3.0"..."0.4.0")
-    ],
+    dependencies: [],
     targets: [
         .target(
-            name: "FunLittleAdsSDK",
-            dependencies: ["SwURL"])
+            name: "FunLittleAdsSDK")
     ]
 )
