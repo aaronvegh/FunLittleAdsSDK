@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwURL
 
 public struct AdUnitA: View {
     @ObservedObject var adController: AdUnitController
@@ -25,7 +24,7 @@ public struct AdUnitA: View {
                     AsyncImage(url: imageURL) {
                         Image("generic-icon")
                     }
-                        .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fit)
                         .frame(width: 74, height: 74, alignment: .center)
                 }
                 VStack(alignment: .leading) {
@@ -66,6 +65,7 @@ public struct AdUnitA: View {
 
 struct AdUnitA_Previews: PreviewProvider {
     static var previews: some View {
-        AdUnitA(adController: AdUnitController(adId: "0"))
+        AdUnitA(adController: AdUnitController(adId: "8c9a5649-64d8-40fa-8c38-8231e759502a"))
+            .frame(width: 340, height: 85)
     }
 }

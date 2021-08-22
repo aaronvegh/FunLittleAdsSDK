@@ -19,8 +19,10 @@ struct AsyncImage<Placeholder: View>: View {
         @ViewBuilder image: @escaping (XImage) -> Image = { img in
             #if os(macOS)
             Image.init(nsImage: img)
+                .resizable()
             #elseif os(iOS)
             Image.init(uiImage: img)
+                .resizable()
             #endif
         }
     ) {
