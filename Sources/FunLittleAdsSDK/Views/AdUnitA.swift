@@ -19,38 +19,47 @@ public struct AdUnitA: View {
                     animated = true
                 }
         } else {
-            HStack {
-                if let imageURL = adController.adUnitInventory.imageURL {
-                    AsyncImage(url: imageURL) {
-                        Image("generic-icon")
+            GeometryReader { geometry in
+                HStack {
+                    if let imageURL = adController.adUnitInventory.imageURL {
+                        AsyncImage(url: imageURL) {
+                            Image("generic-icon")
+                        }
+                        .aspectRatio(contentMode: .fit)
+                            .frame(width: 74, height: 74, alignment: .center)
                     }
-                    .aspectRatio(contentMode: .fit)
-                        .frame(width: 74, height: 74, alignment: .center)
+                    VStack(alignment: .leading) {
+                        stringContent(adUnit: adController.adUnitInventory, colorSet: adController.adUnitInventory.colorSet, size: geometry.size)
+                    }
                 }
-                VStack(alignment: .leading) {
-                    stringContent(adUnit: adController.adUnitInventory, colorSet: adController.adUnitInventory.colorSet)
+                .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                .frame(minWidth: 320, maxWidth: .infinity, maxHeight: 84, alignment: .center)
+                .background(adController.adUnitInventory.colorSet.backgroundColor)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    adController.adReporter.report(AdReport(adId: adController.adUnitInventory.adId, action: .interaction, timestamp: Date()))
+                    guard let url = adController.adUnitInventory.linkURL else { return }
+                    openURL(url)
                 }
-            }
-            .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
-            .frame(minWidth: 320, maxWidth: .infinity, maxHeight: 84, alignment: .center)
-            .background(adController.adUnitInventory.colorSet.backgroundColor)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                adController.adReporter.report(AdReport(adId: adController.adUnitInventory.adId, action: .interaction, timestamp: Date()))
-                guard let url = adController.adUnitInventory.linkURL else { return }
-                openURL(url)
             }
         }
 
     }
 
-    private func stringContent(adUnit: AdUnit, colorSet: ColorSet) -> some View {
+    private func stringContent(adUnit: AdUnit, colorSet: ColorSet, size: CGSize) -> some View {
+        let textSize = size.width > 320 ? 14 : 11
         let string = Text(adUnit.title)
             .foregroundColor(colorSet.textColor)
+            .font(.custom("Helvetica", size: textSize))
+            .minimumScaleFactor(0.5)
             .fontWeight(.heavy)
             + Text(" - ").foregroundColor(colorSet.textColor)
+                .font(.custom("Helvetica", size: textSize))
+                .minimumScaleFactor(0.5)
             + Text(adUnit.descriptionText)
                 .foregroundColor(colorSet.textColor)
+                .font(.custom("Helvetica", size: textSize))
+                .minimumScaleFactor(0.5)
         return string.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
     }
 
@@ -66,6 +75,6 @@ public struct AdUnitA: View {
 struct AdUnitA_Previews: PreviewProvider {
     static var previews: some View {
         AdUnitA(adController: AdUnitController(adId: "8c9a5649-64d8-40fa-8c38-8231e759502a"))
-            .frame(width: 340, height: 85)
+            .frame(width: 280, height: 84)
     }
 }

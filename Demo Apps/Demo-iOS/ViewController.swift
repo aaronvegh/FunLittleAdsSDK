@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FunLittleAds
+import FunLittleAdsSDK
 
 class ViewController: UIViewController {
 
