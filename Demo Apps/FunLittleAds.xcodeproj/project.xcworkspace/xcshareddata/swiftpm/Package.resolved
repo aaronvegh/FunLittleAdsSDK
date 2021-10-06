@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FunLittleAdsSDK",
+        "repositoryURL": "/Users/aaron/Developer/FunLittleAdsSDK",
+        "state": {
+          "branch": null,
+          "revision": "6c931d5de715b904ebcb303f56e3f5c24cb9ab50",
+          "version": "0.0.9"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

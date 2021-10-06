@@ -18,6 +18,7 @@
 		93D020F326CB4202008DB04B /* FunLittleAdsSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 93D020F226CB4202008DB04B /* FunLittleAdsSDK */; };
 		93D020F526CB4209008DB04B /* FunLittleAdsSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 93D020F426CB4209008DB04B /* FunLittleAdsSDK */; };
 		93D020F726CB420D008DB04B /* FunLittleAdsSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 93D020F626CB420D008DB04B /* FunLittleAdsSDK */; };
+		93DB1CB5270D1F4E002F212A /* FunLittleAdsSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 93DB1CB4270D1F4E002F212A /* FunLittleAdsSDK */; };
 		93FD4FF52665C056000BB08B /* Demo_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD4FE32665C055000BB08B /* Demo_SwiftUIApp.swift */; };
 		93FD4FF62665C056000BB08B /* Demo_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD4FE32665C055000BB08B /* Demo_SwiftUIApp.swift */; };
 		93FD4FF92665C056000BB08B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93FD4FE52665C056000BB08B /* Assets.xcassets */; };
@@ -105,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93DB1CB5270D1F4E002F212A /* FunLittleAdsSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +251,7 @@
 			);
 			name = "Demo-iOS";
 			packageProductDependencies = (
+				93DB1CB4270D1F4E002F212A /* FunLittleAdsSDK */,
 			);
 			productName = "Demo-iOS";
 			productReference = 9382065A266188CC001D66BE /* Demo-iOS.app */;
@@ -350,6 +353,7 @@
 			);
 			mainGroup = 9382064126618838001D66BE;
 			packageReferences = (
+				93DB1CB3270D1F4E002F212A /* XCRemoteSwiftPackageReference "FunLittleAdsSDK" */,
 			);
 			productRefGroup = 9382064C26618838001D66BE /* Products */;
 			projectDirPath = "";
@@ -826,6 +830,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		93DB1CB3270D1F4E002F212A /* XCRemoteSwiftPackageReference "FunLittleAdsSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/aaron/Developer/FunLittleAdsSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		93D020F226CB4202008DB04B /* FunLittleAdsSDK */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -837,6 +852,11 @@
 		};
 		93D020F626CB420D008DB04B /* FunLittleAdsSDK */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = FunLittleAdsSDK;
+		};
+		93DB1CB4270D1F4E002F212A /* FunLittleAdsSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93DB1CB3270D1F4E002F212A /* XCRemoteSwiftPackageReference "FunLittleAdsSDK" */;
 			productName = FunLittleAdsSDK;
 		};
 /* End XCSwiftPackageProductDependency section */

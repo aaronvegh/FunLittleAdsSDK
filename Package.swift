@@ -14,6 +14,10 @@ let package = Package(
     dependencies: [],
     targets: [
         .target(
-            name: "FunLittleAdsSDK")
+            name: "FunLittleAdsSDK",
+            swiftSettings: [
+                .define("IS_RELEASE", .when(configuration: .release)),
+            ]
+        )
     ]
 )
