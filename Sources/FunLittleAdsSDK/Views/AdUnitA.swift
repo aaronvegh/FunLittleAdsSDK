@@ -47,19 +47,16 @@ public struct AdUnitA: View {
     }
 
     private func stringContent(adUnit: AdUnit, colorSet: ColorSet, size: CGSize) -> some View {
-        let textSize = size.width > 320 ? 14 : 11
+        let textSize: CGFloat = size.width > 320 ? 16 : 12
         let string = Text(adUnit.title)
             .foregroundColor(colorSet.textColor)
-            .font(.custom("Helvetica", size: textSize))
-            .minimumScaleFactor(0.5)
-            .fontWeight(.heavy)
+            .font(.custom("Helvetica-Bold", size: textSize))
             + Text(" - ").foregroundColor(colorSet.textColor)
                 .font(.custom("Helvetica", size: textSize))
-                .minimumScaleFactor(0.5)
             + Text(adUnit.descriptionText)
                 .foregroundColor(colorSet.textColor)
                 .font(.custom("Helvetica", size: textSize))
-                .minimumScaleFactor(0.5)
+
         return string.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
     }
 
@@ -75,6 +72,6 @@ public struct AdUnitA: View {
 struct AdUnitA_Previews: PreviewProvider {
     static var previews: some View {
         AdUnitA(adController: AdUnitController(adId: "8c9a5649-64d8-40fa-8c38-8231e759502a"))
-            .frame(width: 280, height: 84)
+            .frame(width: 320, height: 84)
     }
 }
