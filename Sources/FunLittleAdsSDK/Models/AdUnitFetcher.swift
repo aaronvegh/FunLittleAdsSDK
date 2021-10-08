@@ -34,9 +34,11 @@ struct AdUnitFetcher {
             let platform = "macOS"
         #endif
         request.addValue(platform, forHTTPHeaderField: "X-FLA-Platform")
+        var isRelease = "0"
         #if IS_RELEASE
-        request.addValue(true, forHTTPHeaderField: "X-FLA-RELEASE")
+        isRelease = "1"
         #endif
+        request.addValue(isRelease, forHTTPHeaderField: "X-FLA-RELEASE")
         let task = session.dataTask(with: request, completionHandler: { (responseData, response, error) in
             DispatchQueue.main.async {
                 guard let data = responseData,

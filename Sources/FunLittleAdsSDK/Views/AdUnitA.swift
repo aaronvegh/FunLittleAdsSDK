@@ -47,7 +47,7 @@ public struct AdUnitA: View {
     }
 
     private func stringContent(adUnit: AdUnit, colorSet: ColorSet, size: CGSize) -> some View {
-        let textSize: CGFloat = size.width > 320 ? 16 : 12
+        let textSize: CGFloat = size.width > 320 ? 16 : 14
         let string = Text(adUnit.title)
             .foregroundColor(colorSet.textColor)
             .font(.custom("Helvetica-Bold", size: textSize))

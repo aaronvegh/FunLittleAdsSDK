@@ -16,7 +16,7 @@ Your integration depends on the way platform you're building with. For example, 
 
 ```var funLittleController = AdUnitController(adId: "8c9a5649-64d8-40fa-8c38-8231e759502a")```
 
-2. Create a _container view_ in which the ads will appear. You can do this in a Storyboard, or create it in code (the demo app names it `funLittleAdView`).
+2. Create a _container view_ in which the ads will appear, and set its height to 85 points (ad placements will fill the entire width of the parent view). You can do this in a Storyboard, or create it in code (the demo app names it `funLittleAdView`).
 3. In your view controller's `viewDidLoad()` method, embed the ad into this view!
 
 ```funLittleController.embedAdUnit(for: funLittleAdView)```
