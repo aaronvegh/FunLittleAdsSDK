@@ -11,11 +11,9 @@ public struct AboutFLAView: View {
     @ObservedObject var viewModel:  AuditLogViewModel
     @Environment(\.presentationMode) var presentationMode
     var dismissAction: (() -> Void)?
-    var bundle: Bundle?
 
     public init(isPresented: Bool = false) {
         self.viewModel = AuditLogViewModel()
-        self.bundle = Bundle(identifier: "com.innoveghtive.FunLittleAds")
     }
 
     @ViewBuilder
@@ -31,7 +29,7 @@ public struct AboutFLAView: View {
                     }.padding()
                 }
                 #endif
-                Image("FLA-Logo", bundle: bundle)
+                Image("FLA-Logo", bundle: .module)
                     .renderingMode(.original)
                     .padding()
                 HStack {
@@ -83,13 +81,11 @@ public struct AboutFLAView: View {
             }
             .padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
         }
-        .background(Color.white)
     }
 
     public var body: some View {
         #if os(macOS)
         main
-            .background(Color.white)
             .frame(minWidth: 300, minHeight: 450)
         #elseif os(iOS)
         main

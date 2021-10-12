@@ -22,7 +22,6 @@ struct AboutFLADetailView: View {
                             .padding()
                         Spacer()
                     }
-                    .background(Color(.sRGB, white: 0.9, opacity: 1.0))
                     HStack {
                         Text("Ad ID")
                             .bold()
