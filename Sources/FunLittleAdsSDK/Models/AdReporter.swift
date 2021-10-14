@@ -137,7 +137,9 @@ class AdReporter {
         self.accessKey = accessKey
         self.session = URLSession(configuration: URLSessionConfiguration.default)
         self.timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { [weak self] _ in
+            #if IS_RELEASE
             self?.sendReports()
+            #endif
         })
     }
 

@@ -23,5 +23,11 @@ Your integration depends on the way platform you're building with. For example, 
 
 That's it! 
 
+For bonus points, you can also include an information screen telling your users about FunLittleAds. It displays some information about the ad network and shows an audit of the data sent to show that we're a good, fun little ad network. It's as simple as pointing a button action to a line like this:
+
+```AboutFLAController().showFLAAuditView(from: self)```
+
+Where `self` is a view controller.
+
 ### Help or Feedback?
 Hit me up via email: aaron@innoveghtive.com.
