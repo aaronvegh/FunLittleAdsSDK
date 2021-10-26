@@ -12,18 +12,29 @@ struct ContentView: View {
     @State var presentingFLASheet = false
 
     var body: some View {
-        VStack {
-            AdContainerView(adController: AdUnitController(adId: "8c9a5649-64d8-40fa-8c38-8231e759502a"))
-            Spacer()
-            #if os(macOS)
-            AboutFLAViewButton().padding()
-            #elseif os(iOS)
-            Button("About FunLittleAds") {
-                presentingFLASheet = true
+        ScrollView {
+            VStack {
+                VStack {
+                    ForEach((1...10), id: \.self) { n in
+                        Text("Item #\(n)")
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 120)
+                        .background(Color.green)
+                    }
+                }
+
+                AdContainerView(adController: AdUnitController(adId: "8c9a5649-64d8-40fa-8c38-8231e759502a")).frame(height: 85)
+
+                #if os(macOS)
+                AboutFLAViewButton().padding()
+                #elseif os(iOS)
+                Button("About FunLittleAds") {
+                    presentingFLASheet = true
+                }
+                #endif
+            }.sheet(isPresented: $presentingFLASheet) {
+                AboutFLAView()
             }
-            #endif
-        }.sheet(isPresented: $presentingFLASheet) {
-            AboutFLAView()
         }
     }
 }

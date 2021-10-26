@@ -16,28 +16,6 @@ import AppKit
 
 import Combine
 
-// SwiftUI App implementation views
-public struct AdContainerView: View {
-    public var adController: AdUnitController
-
-    public init(adController: AdUnitController) {
-        self.adController = adController
-    }
-
-    public var body: some View {
-        AdView().environmentObject(adController)
-    }
-}
-
-public struct AdView: View {
-    @EnvironmentObject var adController: AdUnitController
-
-    public var body: some View {
-        AdUnitA(adController: adController)
-            .animation(.default)
-    }
-}
-
 public class AdUnitController: ObservableObject {
     // This identifies the app publisher to FLA
     public let advertiserId: String
@@ -54,11 +32,23 @@ public class AdUnitController: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     #if os(iOS)
+    lazy var hostingController = {
+        UIHostingController<AdUnitA>(rootView: AdUnitA(adController: self))
+    }()
     var superviews = [UIView]()
+    var isViewVisible: Bool {
+        return hostingController.view.isVisibleToUser
+    }
     #endif
 
     #if os(macOS)
+    lazy var hostingController = {
+        NSHostingController<AdUnitA>(rootView: AdUnitA(adController: self))
+    }()
     var superviews = [NSView]()
+    var isViewVisible: Bool {
+        return hostingController.view.isVisibleToUser
+    }
     #endif
 
     // Initialize the fetcher and reporter
@@ -75,7 +65,15 @@ public class AdUnitController: ObservableObject {
                 adInventory.adId != "0"
             }
             .sink { adInventory in
-                self.adReporter.report(AdReport(adId: adInventory.adId, action: .impression, timestamp: Date()))
+                #if os(macOS)
+                if self.isViewVisible {
+                    self.adReporter.report(AdReport(adId: adInventory.adId, action: .impression, timestamp: Date()))
+                }
+                #elseif os(iOS)
+                if self.isViewVisible {
+                    self.adReporter.report(AdReport(adId: adInventory.adId, action: .impression, timestamp: Date()))
+                }
+                #endif
             }
             .store(in: &cancellables)
 
@@ -112,10 +110,9 @@ public class AdUnitController: ObservableObject {
 // UIKit Extension
 #if os(iOS)
 extension AdUnitController {
-    // This is the 
+
     public func embedAdUnit(for uiKitView: UIView) {
         superviews.append(uiKitView)
-        let hostingController = UIHostingController<AdUnitA>(rootView: AdUnitA(adController: self))
         uiKitView.addSubview(hostingController.view, layoutMode: .fill)
     }
 
@@ -123,12 +120,12 @@ extension AdUnitController {
         for view in superviews {
             guard let goingAwayView = view.subviews.first else { return }
             let newSwiftUIView = AdUnitA(adController: self)
-            let hostingController = UIHostingController<AdUnitA>(rootView: newSwiftUIView)
+            hostingController = UIHostingController<AdUnitA>(rootView: newSwiftUIView)
             view.addSubview(hostingController.view, layoutMode: .fill)
             hostingController.view.alpha = 0
             UIView.transition(with: hostingController.view, duration: 0.5, options: .transitionCrossDissolve) {
                 goingAwayView.alpha = 0
-                hostingController.view.alpha = 1
+                self.hostingController.view.alpha = 1
             } completion: { _ in
                 goingAwayView.removeFromSuperview()
             }
@@ -142,7 +139,6 @@ extension AdUnitController {
 extension AdUnitController {
     public func embedAdUnit(for appKitView: NSView) {
         superviews.append(appKitView)
-        let hostingController = NSHostingController<AdUnitA>(rootView: AdUnitA(adController: self))
         appKitView.addSubview(hostingController.view, layoutMode: .fill)
     }
 
@@ -150,7 +146,7 @@ extension AdUnitController {
         for view in superviews {
             guard let goingAwayView = view.subviews.first else { return }
             let newSwiftUIView = AdUnitA(adController: self)
-            let hostingController = NSHostingController<AdUnitA>(rootView: newSwiftUIView)
+            self.hostingController = NSHostingController<AdUnitA>(rootView: newSwiftUIView)
             view.addSubview(hostingController.view, layoutMode: .fill)
             hostingController.view.alphaValue = 0
 

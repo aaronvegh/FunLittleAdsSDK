@@ -700,7 +700,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.innoveghtive.Demo-SwiftUI";
 				PRODUCT_NAME = "Demo-SwiftUI";
 				SDKROOT = macosx;
@@ -725,7 +725,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.innoveghtive.Demo-SwiftUI";
 				PRODUCT_NAME = "Demo-SwiftUI";
 				SDKROOT = macosx;

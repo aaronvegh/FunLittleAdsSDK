@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 public struct AdUnitA: View {
     @ObservedObject var adController: AdUnitController
@@ -14,7 +15,7 @@ public struct AdUnitA: View {
     public var body: some View {
         if adController.adUnitInventory.adId == "0" {
             LoadingArcs(isAnimating: $animated, count: 3, width: 3, spacing: 2)
-                .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(width: 50, height: 50, alignment: .center)
                 .onAppear() {
                     animated = true
                 }
@@ -33,7 +34,7 @@ public struct AdUnitA: View {
                     }
                 }
                 .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
-                .frame(minWidth: 320, maxWidth: .infinity, maxHeight: 84, alignment: .center)
+                .frame(minWidth: 320, maxWidth: .infinity, alignment: .center)
                 .background(adController.adUnitInventory.colorSet.backgroundColor)
                 .contentShape(Rectangle())
                 .onTapGesture {
@@ -72,6 +73,6 @@ public struct AdUnitA: View {
 struct AdUnitA_Previews: PreviewProvider {
     static var previews: some View {
         AdUnitA(adController: AdUnitController(adId: "8c9a5649-64d8-40fa-8c38-8231e759502a"))
-            .frame(width: 320, height: 84)
+            .frame(width: 320, height: 85)
     }
 }
