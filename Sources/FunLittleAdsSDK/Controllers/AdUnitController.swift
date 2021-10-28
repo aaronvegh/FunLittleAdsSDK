@@ -77,7 +77,7 @@ public class AdUnitController: ObservableObject {
             }
             .store(in: &cancellables)
 
-        adInventoryTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { [weak self] _ in
+        adInventoryTimer = Timer.scheduledTimer(withTimeInterval: 20, repeats: true, block: { [weak self] _ in
             self?.updateAdInventory()
         })
     }

@@ -22,11 +22,13 @@ class AdReporterData {
     var country: String = "Undetermined"
     var device: String = "Undetermined"
     var os: String = "Undetermined"
+    var uniqueIdentifier: String = "Undetermined"
 
     init() {
         device = deviceName()
         os = osNameVersion()
         country = getLocation()
+        uniqueIdentifier = getUniqueIdentifier()
     }
 }
 
@@ -79,6 +81,17 @@ extension AdReporterData {
         return modelIdentifier ?? "Undetermined"
     }
     #endif
+
+    func getUniqueIdentifier() -> String {
+        let ipAddress = getIPAddress() ?? "999"
+
+        return "\(device)\(country)\(os)\(ipAddress)".sha256()
+    }
+
+    private func getIPAddress() -> String? {
+        let networkAddresses = EnumerateNetworkInterfaces.enumerate()
+        return networkAddresses.filter({ $0.name == "en0" }).first?.ip ?? ""
+    }
 }
 
 struct AdReport: Codable {
@@ -86,6 +99,7 @@ struct AdReport: Codable {
     let action: AdReportAction
     let country: String?
     let device: String
+    let uniqueIdentifier: String
     let os: String
     let timestamp: Double
 
@@ -94,6 +108,7 @@ struct AdReport: Codable {
         case action = "event_type"
         case country = "location"
         case device = "device_type"
+        case uniqueIdentifier = "unique_identifier"
         case os = "operating_system"
         case timestamp = "event_timestamp"
     }
@@ -104,6 +119,7 @@ struct AdReport: Codable {
         self.action = action
         self.timestamp = timestamp.timeIntervalSince1970
         self.country = reportData.country
+        self.uniqueIdentifier = reportData.uniqueIdentifier
         self.os = reportData.os
         self.device = reportData.device
     }
@@ -136,7 +152,8 @@ class AdReporter {
         self.endpoint = URL(string: "https://funlittleads.com")!
         self.accessKey = accessKey
         self.session = URLSession(configuration: URLSessionConfiguration.default)
-        self.timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { [weak self] _ in
+        // Send reports every 3 minutes
+        self.timer = Timer.scheduledTimer(withTimeInterval: 180, repeats: true, block: { [weak self] _ in
             #if IS_RELEASE
             self?.sendReports()
             #endif

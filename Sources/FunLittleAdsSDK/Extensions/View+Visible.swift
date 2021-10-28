@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  View+Visible.swift
 //  
 //
 //  Created by Aaron Vegh on 2021-10-25.

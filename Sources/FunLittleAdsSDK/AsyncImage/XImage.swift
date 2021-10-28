@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  XImage.swift
 //  
 //
 //  Created by Aaron Vegh on 2021-08-22.
