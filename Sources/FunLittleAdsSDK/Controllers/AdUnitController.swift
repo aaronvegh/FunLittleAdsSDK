@@ -65,20 +65,15 @@ public class AdUnitController: ObservableObject {
                 adInventory.adId != "0"
             }
             .sink { adInventory in
-                #if os(macOS)
-                if self.isViewVisible {
-                    self.adReporter.report(AdReport(adId: adInventory.adId, action: .impression, timestamp: Date()))
-                }
-                #elseif os(iOS)
-                if self.isViewVisible {
-                    self.adReporter.report(AdReport(adId: adInventory.adId, action: .impression, timestamp: Date()))
-                }
-                #endif
+                self.adReporter.report(AdReport(adId: adInventory.adId, action: .impression, timestamp: Date()))
             }
             .store(in: &cancellables)
 
         adInventoryTimer = Timer.scheduledTimer(withTimeInterval: 20, repeats: true, block: { [weak self] _ in
-            self?.updateAdInventory()
+            guard let self = self else { return }
+            if self.isViewVisible {
+                self.updateAdInventory()
+            }
         })
     }
 

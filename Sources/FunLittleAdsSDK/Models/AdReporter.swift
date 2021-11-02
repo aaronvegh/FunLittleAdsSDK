@@ -23,6 +23,7 @@ class AdReporterData {
     var device: String = "Undetermined"
     var os: String = "Undetermined"
     var uniqueIdentifier: String = "Undetermined"
+    let sdkVersion: String = "0.1.7"
 
     init() {
         device = deviceName()
@@ -100,6 +101,7 @@ struct AdReport: Codable {
     let country: String?
     let device: String
     let uniqueIdentifier: String
+    let sdkVersion: String
     let os: String
     let timestamp: Double
 
@@ -109,6 +111,7 @@ struct AdReport: Codable {
         case country = "location"
         case device = "device_type"
         case uniqueIdentifier = "unique_identifier"
+        case sdkVersion = "sdk_version"
         case os = "operating_system"
         case timestamp = "event_timestamp"
     }
@@ -120,6 +123,7 @@ struct AdReport: Codable {
         self.timestamp = timestamp.timeIntervalSince1970
         self.country = reportData.country
         self.uniqueIdentifier = reportData.uniqueIdentifier
+        self.sdkVersion = reportData.sdkVersion
         self.os = reportData.os
         self.device = reportData.device
     }
@@ -166,6 +170,8 @@ class AdReporter {
 
     @objc private func sendReports() {
         // send report to server
+        guard adReports.count > 0 else { return }
+        
         guard let payload = try? JSONEncoder().encode(adReports) else { return }
         var request = URLRequest(url: endpoint.appendingPathComponent("/api/v1/report"))
         request.addValue(accessKey, forHTTPHeaderField: "X-FLA-Token")
